@@ -1,8 +1,13 @@
 import { useState } from "react";
 import authOptions from "../lib/auth.config";
+import { useNavigate } from "react-router-dom";
 function Auth() {
     const [isSaas, setIsSaas] = useState(true)
+    const navigate = useNavigate();
 
+    const handleClick = () => {
+        navigate("/dashboard");
+    }
 
     return (
         <div className="cards min-h-[87%] bg-white flex w-full flex-col border rounded-xl">
@@ -26,7 +31,7 @@ function Auth() {
                         isSaas ? (
 
                             authOptions.Saas.map((option) => (
-                                <div className="flex flex-row justify-center py-4 items-center gap-4 border rounded-lg w-full">
+                                <div className="flex flex-row justify-center py-4 items-center gap-4 border rounded-lg w-full cursor-pointer" onClick={handleClick}>
                                     <img src={option.image} />
                                     <div className="font-semibold">Sign in with {option.value}</div>
                                 </div>
@@ -35,7 +40,7 @@ function Auth() {
 
 
                             authOptions.SelfHosted.map((option) => (
-                                <div className="flex flex-row justify-center items-center py-4 gap-4 border rounded-lg w-full">
+                                <div className="flex flex-row justify-center items-center py-4 gap-4 border rounded-lg w-full cursor-pointer" onClick={handleClick}>
                                     <img src={option.image} />
                                     <div className="font-semibold">Sign in with {option.value}</div>
                                 </div>
